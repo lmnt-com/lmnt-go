@@ -4,48 +4,123 @@ package lmnt_test
 
 import (
 	"context"
+	"errors"
+	"os"
 	"strings"
 	"testing"
 
 	lmnt "github.com/lmnt-com/lmnt-go"
+	"github.com/lmnt-com/lmnt-go/internal/testutil"
+	"github.com/lmnt-com/lmnt-go/option"
 )
 
 func TestVoiceNew(t *testing.T) {
-	client := mockClient(`{}`)
-	_, err := client.Voice.New(context.Background(), lmnt.VoiceNewParams{Name: "sample", File: strings.NewReader("sample")})
+	t.Skip("Prism bug detailed here: https://github.com/stoplightio/prism/pull/2654")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := lmnt.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Voice.New(context.TODO(), lmnt.VoiceNewParams{Name: "sample", File: strings.NewReader("sample")})
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		var apierr *lmnt.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
 
 func TestVoiceGet(t *testing.T) {
-	client := mockClient(`{}`)
-	_, err := client.Voice.Get(context.Background(), "sample")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := lmnt.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Voice.Get(context.TODO(), "sample")
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		var apierr *lmnt.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
 
 func TestVoiceUpdate(t *testing.T) {
-	client := mockClient(`{}`)
-	_, err := client.Voice.Update(context.Background(), "sample", lmnt.VoiceUpdateParams{})
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := lmnt.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Voice.Update(context.TODO(), "sample", lmnt.VoiceUpdateParams{})
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		var apierr *lmnt.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
 
 func TestVoiceDelete(t *testing.T) {
-	client := mockClient(`{}`)
-	_, err := client.Voice.Delete(context.Background(), "sample")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := lmnt.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Voice.Delete(context.TODO(), "sample")
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		var apierr *lmnt.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
 
 func TestVoiceList(t *testing.T) {
-	client := mockClient(`[]`)
-	_, err := client.Voice.List(context.Background(), lmnt.VoiceListParams{})
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := lmnt.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Voice.List(context.TODO(), lmnt.VoiceListParams{})
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		var apierr *lmnt.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }

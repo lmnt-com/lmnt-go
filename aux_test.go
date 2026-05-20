@@ -3,40 +3,18 @@
 package lmnt_test
 
 import (
-	"io"
-	"net/http"
-	"strings"
 	"testing"
 
-	lmnt "github.com/lmnt-com/lmnt-go"
-	"github.com/lmnt-com/lmnt-go/option"
 	"go.uber.org/goleak"
 )
 
 // TestMain runs the suite under goleak so a leaked keepalive or reader
-// goroutine fails the build rather than passing silently.
+// goroutine fails the build rather than passing silently. Idle HTTP
+// keep-alive connections pooled by the Prism-backed REST tests aren't
+// leaks, so their transport goroutines are ignored.
 func TestMain(m *testing.M) {
-	goleak.VerifyTestMain(m)
-}
-
-// roundTripFunc adapts a function to an http.RoundTripper.
-type roundTripFunc func(*http.Request) (*http.Response, error)
-
-func (f roundTripFunc) RoundTrip(r *http.Request) (*http.Response, error) { return f(r) }
-
-// mockClient returns a client whose every HTTP call resolves to a 200 with
-// the given JSON body.
-func mockClient(body string) lmnt.Client {
-	return lmnt.NewClient(
-		option.WithAPIKey("test"),
-		option.WithHTTPClient(&http.Client{Transport: roundTripFunc(
-			func(*http.Request) (*http.Response, error) {
-				return &http.Response{
-					StatusCode: 200,
-					Body:       io.NopCloser(strings.NewReader(body)),
-					Header:     http.Header{"Content-Type": {"application/json"}},
-				}, nil
-			},
-		)}),
+	goleak.VerifyTestMain(m,
+		goleak.IgnoreAnyFunction("net/http.(*persistConn).readLoop"),
+		goleak.IgnoreAnyFunction("net/http.(*persistConn).writeLoop"),
 	)
 }

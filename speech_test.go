@@ -4,23 +4,56 @@ package lmnt_test
 
 import (
 	"context"
+	"errors"
+	"io"
+	"net/http"
+	"net/http/httptest"
+	"os"
 	"testing"
 
 	lmnt "github.com/lmnt-com/lmnt-go"
+	"github.com/lmnt-com/lmnt-go/internal/testutil"
+	"github.com/lmnt-com/lmnt-go/option"
 )
 
 func TestSpeechGenerate(t *testing.T) {
-	client := mockClient(`{}`)
-	_, err := client.Speech.Generate(context.Background(), lmnt.SpeechGenerateParams{Voice: "sample", Text: "sample"})
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(200)
+		w.Write([]byte("sample"))
+	}))
+	defer server.Close()
+	client := lmnt.NewClient(
+		option.WithBaseURL(server.URL),
+		option.WithAPIKey("My API Key"),
+	)
+	resp, err := client.Speech.Generate(context.TODO(), lmnt.SpeechGenerateParams{Voice: "sample", Text: "sample"})
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+	defer resp.Body.Close()
+	if _, err := io.ReadAll(resp.Body); err != nil {
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
 
 func TestSpeechGenerateDetailed(t *testing.T) {
-	client := mockClient(`{}`)
-	_, err := client.Speech.GenerateDetailed(context.Background(), lmnt.SpeechGenerateDetailedParams{Voice: "sample", Text: "sample"})
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := lmnt.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Speech.GenerateDetailed(context.TODO(), lmnt.SpeechGenerateDetailedParams{Voice: "sample", Text: "sample"})
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		var apierr *lmnt.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }

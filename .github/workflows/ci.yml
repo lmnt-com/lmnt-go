@@ -48,4 +48,4 @@ jobs:
           go-version: ${{ matrix.go-version }}
 
       - name: Run tests
-        run: go test -race ./...
+        run: ./scripts/test -race

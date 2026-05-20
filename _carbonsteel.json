@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generated_at": "2026-05-20T18:50:17Z",
+  "generated_at": "2026-05-20T19:18:55Z",
   "spec_sha": "4c822a78c44f68ac:cc7f4554e955f4fe",
   "files": [
     "account.go",
@@ -46,6 +46,7 @@
     "internal/paramutil/field.go",
     "internal/paramutil/union.go",
     "internal/requestconfig/requestconfig.go",
+    "internal/testutil/testutil.go",
     "internal/version.go",
     "option/middleware.go",
     "option/requestoption.go",

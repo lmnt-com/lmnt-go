@@ -4,13 +4,33 @@ package lmnt_test
 
 import (
 	"context"
+	"errors"
+	"os"
 	"testing"
+
+	lmnt "github.com/lmnt-com/lmnt-go"
+	"github.com/lmnt-com/lmnt-go/internal/testutil"
+	"github.com/lmnt-com/lmnt-go/option"
 )
 
 func TestAccountGet(t *testing.T) {
-	client := mockClient(`{}`)
-	_, err := client.Account.Get(context.Background())
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := lmnt.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Account.Get(context.TODO())
 	if err != nil {
-		t.Fatalf("err should be nil: %s", err)
+		var apierr *lmnt.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
