@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Checking formatting"
+unformatted="$(gofmt -l .)"
+if [ -n "$unformatted" ]; then
+  echo "$unformatted"
+  echo "The files above are not formatted. Run ./scripts/format to fix."
+  exit 1
+fi
+
+echo "==> Running go vet"
+go vet ./...
+
+echo "==> Running go build"
+go build ./...
+
+echo "==> Checking tests compile"
+go test -run=^$ ./...
