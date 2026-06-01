@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.2](https://github.com/lmnt-com/lmnt-go/compare/v2.12.1...v2.12.2) (2026-06-01)
+
+
+### Bug Fixes
+
+* **streaming:** end stream cleanly on graceful websocket close ([bb02cb9](https://github.com/lmnt-com/lmnt-go/commit/bb02cb9d98bb6c0ac09dbb04d7a854873b5dc8c2))
+
 ## [2.12.1](https://github.com/lmnt-com/lmnt-go/compare/v0.0.1-alpha.0...v2.12.1) (2026-06-01)
 
 
