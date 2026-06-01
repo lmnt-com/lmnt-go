@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"reflect"
 
-	"github.com/lmnt-com/lmnt-go/internal/encoding/json/sentinel"
+	"github.com/lmnt-com/lmnt-go/v2/internal/encoding/json/sentinel"
 )
 
 // NullStruct is used to set a struct to the JSON value null.

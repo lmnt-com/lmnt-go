@@ -4,14 +4,15 @@ package lmnt
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"slices"
 
-	"github.com/lmnt-com/lmnt-go/internal/apijson"
-	"github.com/lmnt-com/lmnt-go/internal/requestconfig"
-	"github.com/lmnt-com/lmnt-go/option"
-	"github.com/lmnt-com/lmnt-go/packages/param"
-	"github.com/lmnt-com/lmnt-go/packages/respjson"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apijson"
+	"github.com/lmnt-com/lmnt-go/v2/internal/requestconfig"
+	"github.com/lmnt-com/lmnt-go/v2/option"
+	"github.com/lmnt-com/lmnt-go/v2/packages/param"
+	"github.com/lmnt-com/lmnt-go/v2/packages/respjson"
 )
 
 // SpeechService contains methods that help with interacting with the lmnt API.
@@ -35,11 +36,20 @@ func NewSpeechService(opts ...option.RequestOption) (r SpeechService) {
 }
 
 // Generate speech
-func (r *SpeechService) Generate(ctx context.Context, body SpeechGenerateParams, opts ...option.RequestOption) (res *http.Response, err error) {
+func (r *SpeechService) Generate(ctx context.Context, body SpeechGenerateParams, opts ...option.RequestOption) (res *SpeechGenerateResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append(opts, option.WithResponseInto(&res))
+	var raw *http.Response
+	opts = append(opts, option.WithResponseInto(&raw))
 	path := "v1/ai/speech/bytes"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	if err == nil && raw != nil {
+		res = &SpeechGenerateResponse{
+			Body:         raw.Body,
+			ContentType:  raw.Header.Get("Content-Type"),
+			RequestID:    raw.Header.Get("request-id"),
+			HTTPResponse: raw,
+		}
+	}
 	return
 }
 
@@ -58,6 +68,10 @@ type SpeechGenerateDetailedResponse struct {
 	// An array describing where each generated input element (words and non-words like
 	// spaces, punctuation, etc.) falls in the audio.
 	Timestamps []TimestampObject `json:"timestamps"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Audio       respjson.Field
@@ -80,6 +94,10 @@ type TimestampObject struct {
 	Start float64 `json:"start" api:"required"`
 	// The generated input element; beginning and ending with a short silence.
 	Text string `json:"text" api:"required"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Duration    respjson.Field
@@ -94,6 +112,22 @@ type TimestampObject struct {
 func (r TimestampObject) RawJSON() string { return r.JSON.raw }
 func (r *TimestampObject) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
+}
+
+// SpeechGenerateResponse is the result of a streaming binary request. The bytes are
+// generated and returned incrementally; see Body.
+type SpeechGenerateResponse struct {
+	// A streaming reader of the response bytes; data becomes readable as the server
+	// produces it, so processing can begin before the response finishes. The caller
+	// must Close it. This is the same reader as HTTPResponse.Body.
+	Body io.ReadCloser
+	// The response `Content-Type` header, e.g. "audio/mpeg".
+	ContentType string
+	// The LMNT request identifier, copied from the `request-id` response header.
+	RequestID string
+	// The underlying HTTP response — an escape hatch for callers needing the status
+	// code, other headers, or trailers.
+	HTTPResponse *http.Response
 }
 
 type SpeechGenerateParams struct {

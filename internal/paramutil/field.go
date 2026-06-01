@@ -1,8 +1,8 @@
 package paramutil
 
 import (
-	"github.com/lmnt-com/lmnt-go/packages/param"
-	"github.com/lmnt-com/lmnt-go/packages/respjson"
+	"github.com/lmnt-com/lmnt-go/v2/packages/param"
+	"github.com/lmnt-com/lmnt-go/v2/packages/respjson"
 )
 
 func AddrIfPresent[T comparable](v param.Opt[T]) *T {

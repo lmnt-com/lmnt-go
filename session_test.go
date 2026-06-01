@@ -10,9 +10,9 @@ import (
 	"sync"
 	"testing"
 
-	lmnt "github.com/lmnt-com/lmnt-go"
-	"github.com/lmnt-com/lmnt-go/option"
-	"github.com/lmnt-com/lmnt-go/packages/wsstream"
+	lmnt "github.com/lmnt-com/lmnt-go/v2"
+	"github.com/lmnt-com/lmnt-go/v2/option"
+	"github.com/lmnt-com/lmnt-go/v2/packages/wsstream"
 )
 
 // fakeConn is an in-process wsstream.Conn: it replays a scripted list of frames

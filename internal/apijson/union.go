@@ -4,7 +4,7 @@ import (
 	"errors"
 	"reflect"
 
-	"github.com/lmnt-com/lmnt-go/packages/param"
+	"github.com/lmnt-com/lmnt-go/v2/packages/param"
 
 	"github.com/tidwall/gjson"
 )

@@ -4,7 +4,7 @@ import (
 	"mime/multipart"
 	"reflect"
 
-	"github.com/lmnt-com/lmnt-go/packages/param"
+	"github.com/lmnt-com/lmnt-go/v2/packages/param"
 )
 
 func (e *encoder) newRichFieldTypeEncoder(t reflect.Type) encoderFunc {

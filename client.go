@@ -5,7 +5,7 @@ package lmnt
 import (
 	"os"
 
-	"github.com/lmnt-com/lmnt-go/option"
+	"github.com/lmnt-com/lmnt-go/v2/option"
 )
 
 // Client creates a struct with services and top level methods that help with

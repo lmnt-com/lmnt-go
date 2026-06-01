@@ -14,12 +14,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/lmnt-com/lmnt-go/internal"
-	"github.com/lmnt-com/lmnt-go/internal/apijson"
-	"github.com/lmnt-com/lmnt-go/internal/requestconfig"
-	"github.com/lmnt-com/lmnt-go/option"
-	"github.com/lmnt-com/lmnt-go/packages/respjson"
-	"github.com/lmnt-com/lmnt-go/packages/wsstream"
+	"github.com/lmnt-com/lmnt-go/v2/internal"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apijson"
+	"github.com/lmnt-com/lmnt-go/v2/internal/requestconfig"
+	"github.com/lmnt-com/lmnt-go/v2/option"
+	"github.com/lmnt-com/lmnt-go/v2/packages/respjson"
+	"github.com/lmnt-com/lmnt-go/v2/packages/wsstream"
 	"github.com/tidwall/gjson"
 )
 

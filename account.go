@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"slices"
 
-	"github.com/lmnt-com/lmnt-go/internal/apijson"
-	"github.com/lmnt-com/lmnt-go/internal/requestconfig"
-	"github.com/lmnt-com/lmnt-go/option"
-	"github.com/lmnt-com/lmnt-go/packages/respjson"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apijson"
+	"github.com/lmnt-com/lmnt-go/v2/internal/requestconfig"
+	"github.com/lmnt-com/lmnt-go/v2/option"
+	"github.com/lmnt-com/lmnt-go/v2/packages/respjson"
 )
 
 // AccountService contains methods that help with interacting with the lmnt API.
@@ -42,6 +42,10 @@ func (r *AccountService) Get(ctx context.Context, opts ...option.RequestOption) 
 type AccountGetResponse struct {
 	Plan  AccountGetResponsePlan  `json:"plan" api:"required"`
 	Usage AccountGetResponseUsage `json:"usage" api:"required"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Plan        respjson.Field
@@ -63,6 +67,10 @@ type AccountGetResponsePlan struct {
 	CommercialUseAllowed bool  `json:"commercial_use_allowed" api:"required"`
 	// The type of plan you are subscribed to.
 	Type string `json:"type" api:"required"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		CharacterLimit       respjson.Field
@@ -82,6 +90,10 @@ func (r *AccountGetResponsePlan) UnmarshalJSON(data []byte) error {
 type AccountGetResponseUsage struct {
 	// The number of characters remaining in this billing period.
 	Characters int64 `json:"characters" api:"required"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Characters  respjson.Field

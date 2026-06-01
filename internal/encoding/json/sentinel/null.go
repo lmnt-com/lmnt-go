@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/lmnt-com/lmnt-go/internal/encoding/json/shims"
+	"github.com/lmnt-com/lmnt-go/v2/internal/encoding/json/shims"
 )
 
 type cacheEntry struct {
