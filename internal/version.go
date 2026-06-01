@@ -2,7 +2,7 @@
 
 package internal
 
-const PackageVersion = "0.0.1-alpha.0" // x-release-please-version
+const PackageVersion = "2.12.1" // x-release-please-version
 
 // APIVersion is the LMNT API version this SDK was generated against. It is
 // sent in the `lmnt-version` header on every REST request and speech-session
