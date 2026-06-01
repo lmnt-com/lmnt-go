@@ -11,16 +11,17 @@ import (
 	"mime"
 	"net/http"
 	"net/url"
+	"reflect"
 	"runtime"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/lmnt-com/lmnt-go/internal"
-	"github.com/lmnt-com/lmnt-go/internal/apierror"
-	"github.com/lmnt-com/lmnt-go/internal/apiform"
-	"github.com/lmnt-com/lmnt-go/internal/apiquery"
-	"github.com/lmnt-com/lmnt-go/packages/wsstream"
+	"github.com/lmnt-com/lmnt-go/v2/internal"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apierror"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apiform"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apiquery"
+	"github.com/lmnt-com/lmnt-go/v2/packages/wsstream"
 )
 
 func getDefaultHeaders() map[string]string {
@@ -570,7 +571,41 @@ func (cfg *RequestConfig) Execute() (err error) {
 		}
 	}
 
+	stampRequestID(cfg.ResponseBodyInto, res.Header.Get("request-id"))
 	return nil
+}
+
+// stampRequestID writes the `request-id` response header onto the decoded
+// response: onto a struct's RequestID field, or onto each struct element of a
+// slice response. No-op when the value has no such field.
+func stampRequestID(into any, requestID string) {
+	if requestID == "" || into == nil {
+		return
+	}
+	v := reflect.ValueOf(into)
+	for v.Kind() == reflect.Pointer {
+		if v.IsNil() {
+			return
+		}
+		v = v.Elem()
+	}
+	switch v.Kind() {
+	case reflect.Struct:
+		setRequestIDField(v, requestID)
+	case reflect.Slice:
+		for i := 0; i < v.Len(); i++ {
+			if elem := v.Index(i); elem.Kind() == reflect.Struct {
+				setRequestIDField(elem, requestID)
+			}
+		}
+	}
+}
+
+func setRequestIDField(structVal reflect.Value, requestID string) {
+	f := structVal.FieldByName("RequestID")
+	if f.IsValid() && f.CanSet() && f.Kind() == reflect.String {
+		f.SetString(requestID)
+	}
 }
 
 func ExecuteNewRequest(ctx context.Context, method string, u string, body any, dst any, opts ...RequestOption) error {

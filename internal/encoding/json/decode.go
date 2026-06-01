@@ -14,7 +14,7 @@ import (
 	"encoding"
 	"encoding/base64"
 	"fmt"
-	"github.com/lmnt-com/lmnt-go/internal/encoding/json/shims"
+	"github.com/lmnt-com/lmnt-go/v2/internal/encoding/json/shims"
 	"reflect"
 	"strconv"
 	"strings"

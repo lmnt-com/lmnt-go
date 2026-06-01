@@ -11,9 +11,9 @@ import (
 	"os"
 	"testing"
 
-	lmnt "github.com/lmnt-com/lmnt-go"
-	"github.com/lmnt-com/lmnt-go/internal/testutil"
-	"github.com/lmnt-com/lmnt-go/option"
+	lmnt "github.com/lmnt-com/lmnt-go/v2"
+	"github.com/lmnt-com/lmnt-go/v2/internal/testutil"
+	"github.com/lmnt-com/lmnt-go/v2/option"
 )
 
 func TestSpeechGenerate(t *testing.T) {

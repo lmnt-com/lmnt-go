@@ -3,9 +3,9 @@
 package lmnt
 
 import (
-	"github.com/lmnt-com/lmnt-go/internal/apierror"
-	"github.com/lmnt-com/lmnt-go/packages/param"
-	"github.com/lmnt-com/lmnt-go/shared"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apierror"
+	"github.com/lmnt-com/lmnt-go/v2/packages/param"
+	"github.com/lmnt-com/lmnt-go/v2/shared"
 )
 
 // paramObj is aliased to make [param.APIObject] private when embedded in

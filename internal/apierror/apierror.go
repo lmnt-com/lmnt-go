@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/lmnt-com/lmnt-go/internal/apijson"
-	"github.com/lmnt-com/lmnt-go/packages/respjson"
-	"github.com/lmnt-com/lmnt-go/shared"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apijson"
+	"github.com/lmnt-com/lmnt-go/v2/packages/respjson"
+	"github.com/lmnt-com/lmnt-go/v2/shared"
 )
 
 // Error represents an error that originates from the API, i.e. when a request is

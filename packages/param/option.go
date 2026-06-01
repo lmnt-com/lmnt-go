@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	shimjson "github.com/lmnt-com/lmnt-go/internal/encoding/json"
+	shimjson "github.com/lmnt-com/lmnt-go/v2/internal/encoding/json"
 )
 
 func NewOpt[T comparable](v T) Opt[T] {

@@ -2,65 +2,66 @@
 
 # Shared Params Types
 
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/shared#LanguageCode">shared.LanguageCode</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/shared#Model">shared.Model</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/shared#OutputFormat">shared.OutputFormat</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/shared#SampleRate">shared.SampleRate</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2/shared#LanguageCode">shared.LanguageCode</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2/shared#Model">shared.Model</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2/shared#OutputFormat">shared.OutputFormat</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2/shared#SampleRate">shared.SampleRate</a>
 
 # Shared Response Types
 
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/shared#ErrorType">shared.ErrorType</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2/shared#ErrorType">shared.ErrorType</a>
 
 # Speech
 
 Response Types:
 
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechGenerateDetailedResponse">SpeechGenerateDetailedResponse</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechGenerateDetailedResponse">SpeechGenerateDetailedResponse</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechGenerateResponse">SpeechGenerateResponse</a>
 
 Methods:
 
-- <code title="post /v1/ai/speech/bytes">client.Speech.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechService.Generate">Generate</a>(ctx context.Context, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechGenerateParams">SpeechGenerateParams</a>, opts ...option.RequestOption) (*http.Response, error)</code>
-- <code title="post /v1/ai/speech">client.Speech.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechService.GenerateDetailed">GenerateDetailed</a>(ctx context.Context, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechGenerateDetailedParams">SpeechGenerateDetailedParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechGenerateDetailedResponse">SpeechGenerateDetailedResponse</a>, error)</code>
+- <code title="post /v1/ai/speech/bytes">client.Speech.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechService.Generate">Generate</a>(ctx context.Context, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechGenerateParams">SpeechGenerateParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechGenerateResponse">SpeechGenerateResponse</a>, error)</code>
+- <code title="post /v1/ai/speech">client.Speech.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechService.GenerateDetailed">GenerateDetailed</a>(ctx context.Context, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechGenerateDetailedParams">SpeechGenerateDetailedParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechGenerateDetailedResponse">SpeechGenerateDetailedResponse</a>, error)</code>
 
 ## Sessions
 
 Types:
 
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSession">SpeechSession</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSessionMessage">SpeechSessionMessage</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSessionReady">SpeechSessionReady</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSessionAudio">SpeechSessionAudio</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSessionTimestamps">SpeechSessionTimestamps</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSessionFlushComplete">SpeechSessionFlushComplete</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSessionResetComplete">SpeechSessionResetComplete</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSessionError">SpeechSessionError</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSession">SpeechSession</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSessionMessage">SpeechSessionMessage</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSessionReady">SpeechSessionReady</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSessionAudio">SpeechSessionAudio</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSessionTimestamps">SpeechSessionTimestamps</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSessionFlushComplete">SpeechSessionFlushComplete</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSessionResetComplete">SpeechSessionResetComplete</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSessionError">SpeechSessionError</a>
 
 Methods:
 
-- <code>client.Speech.Sessions.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SessionService.New">New</a>(ctx context.Context, params <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SessionNewParams">SessionNewParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#SpeechSession">SpeechSession</a>, error)</code>
+- <code>client.Speech.Sessions.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SessionService.New">New</a>(ctx context.Context, params <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SessionNewParams">SessionNewParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#SpeechSession">SpeechSession</a>, error)</code>
 
 # Voice
 
 Response Types:
 
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#Voice">Voice</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceDeleteResponse">VoiceDeleteResponse</a>
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceUpdateResponse">VoiceUpdateResponse</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#Voice">Voice</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceDeleteResponse">VoiceDeleteResponse</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceUpdateResponse">VoiceUpdateResponse</a>
 
 Methods:
 
-- <code title="post /v1/ai/voice">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceService.New">New</a>(ctx context.Context, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceNewParams">VoiceNewParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#Voice">Voice</a>, error)</code>
-- <code title="get /v1/ai/voice/{id}">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceService.Get">Get</a>(ctx context.Context, id string, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#Voice">Voice</a>, error)</code>
-- <code title="put /v1/ai/voice/{id}">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceService.Update">Update</a>(ctx context.Context, id string, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceUpdateParams">VoiceUpdateParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceUpdateResponse">VoiceUpdateResponse</a>, error)</code>
-- <code title="delete /v1/ai/voice/{id}">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceService.Delete">Delete</a>(ctx context.Context, id string, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceDeleteResponse">VoiceDeleteResponse</a>, error)</code>
-- <code title="get /v1/ai/voice/list">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceService.List">List</a>(ctx context.Context, query <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#VoiceListParams">VoiceListParams</a>, opts ...option.RequestOption) (*[]<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#Voice">Voice</a>, error)</code>
+- <code title="post /v1/ai/voice">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceService.New">New</a>(ctx context.Context, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceNewParams">VoiceNewParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#Voice">Voice</a>, error)</code>
+- <code title="get /v1/ai/voice/{id}">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceService.Get">Get</a>(ctx context.Context, id string, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#Voice">Voice</a>, error)</code>
+- <code title="put /v1/ai/voice/{id}">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceService.Update">Update</a>(ctx context.Context, id string, body <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceUpdateParams">VoiceUpdateParams</a>, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceUpdateResponse">VoiceUpdateResponse</a>, error)</code>
+- <code title="delete /v1/ai/voice/{id}">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceService.Delete">Delete</a>(ctx context.Context, id string, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceDeleteResponse">VoiceDeleteResponse</a>, error)</code>
+- <code title="get /v1/ai/voice/list">client.Voice.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceService.List">List</a>(ctx context.Context, query <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#VoiceListParams">VoiceListParams</a>, opts ...option.RequestOption) (*[]<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#Voice">Voice</a>, error)</code>
 
 # Account
 
 Response Types:
 
-- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#AccountGetResponse">AccountGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#AccountGetResponse">AccountGetResponse</a>
 
 Methods:
 
-- <code title="get /v1/account">client.Account.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#AccountService.Get">Get</a>(ctx context.Context, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go#AccountGetResponse">AccountGetResponse</a>, error)</code>
+- <code title="get /v1/account">client.Account.<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#AccountService.Get">Get</a>(ctx context.Context, opts ...option.RequestOption) (*<a href="https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#AccountGetResponse">AccountGetResponse</a>, error)</code>

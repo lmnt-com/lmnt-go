@@ -9,7 +9,7 @@ Full documentation is available at [docs.lmnt.com/api/sdks/go](https://docs.lmnt
 ## Installation
 
 ```sh
-go get github.com/lmnt-com/lmnt-go
+go get github.com/lmnt-com/lmnt-go/v2
 ```
 
 ## Getting started
@@ -22,8 +22,8 @@ import (
 	"io"
 	"os"
 
-	lmnt "github.com/lmnt-com/lmnt-go"
-	"github.com/lmnt-com/lmnt-go/option"
+	lmnt "github.com/lmnt-com/lmnt-go/v2"
+	"github.com/lmnt-com/lmnt-go/v2/option"
 )
 
 func main() {

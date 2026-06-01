@@ -13,13 +13,13 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/lmnt-com/lmnt-go/internal/apiform"
-	"github.com/lmnt-com/lmnt-go/internal/apijson"
-	"github.com/lmnt-com/lmnt-go/internal/apiquery"
-	"github.com/lmnt-com/lmnt-go/internal/requestconfig"
-	"github.com/lmnt-com/lmnt-go/option"
-	"github.com/lmnt-com/lmnt-go/packages/param"
-	"github.com/lmnt-com/lmnt-go/packages/respjson"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apiform"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apijson"
+	"github.com/lmnt-com/lmnt-go/v2/internal/apiquery"
+	"github.com/lmnt-com/lmnt-go/v2/internal/requestconfig"
+	"github.com/lmnt-com/lmnt-go/v2/option"
+	"github.com/lmnt-com/lmnt-go/v2/packages/param"
+	"github.com/lmnt-com/lmnt-go/v2/packages/respjson"
 )
 
 // VoiceService contains methods that help with interacting with the lmnt API.
@@ -131,6 +131,10 @@ type Voice struct {
 	Tags []string `json:"tags"`
 	// The method by which this voice was created. Always `instant`.
 	Type VoiceType `json:"type"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID          respjson.Field
@@ -157,6 +161,10 @@ func (r *Voice) UnmarshalJSON(data []byte) error {
 type VoiceUpdateResponse struct {
 	// Voice details
 	Voice Voice `json:"voice" api:"required"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Voice       respjson.Field
@@ -173,6 +181,10 @@ func (r *VoiceUpdateResponse) UnmarshalJSON(data []byte) error {
 
 type VoiceDeleteResponse struct {
 	Success bool `json:"success" api:"required"`
+	// RequestID is the LMNT request identifier, copied from the `request-id`
+	// response header. It is populated on the value returned by an operation;
+	// it is empty on structs nested inside that value.
+	RequestID string `json:"-"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Success     respjson.Field

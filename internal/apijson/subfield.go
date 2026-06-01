@@ -3,7 +3,7 @@ package apijson
 import (
 	"reflect"
 
-	"github.com/lmnt-com/lmnt-go/packages/respjson"
+	"github.com/lmnt-com/lmnt-go/v2/packages/respjson"
 )
 
 func getSubField(root reflect.Value, index []int, name string) reflect.Value {

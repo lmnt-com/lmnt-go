@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lmnt-com/lmnt-go/internal/requestconfig"
-	"github.com/lmnt-com/lmnt-go/packages/wsstream"
+	"github.com/lmnt-com/lmnt-go/v2/internal/requestconfig"
+	"github.com/lmnt-com/lmnt-go/v2/packages/wsstream"
 	"github.com/tidwall/sjson"
 )
 
@@ -29,7 +29,7 @@ var _ = errOption
 // which can be supplied to clients, services, and methods. You can read more about this functional
 // options pattern in our [README].
 //
-// [README]: https://pkg.go.dev/github.com/lmnt-com/lmnt-go#readme-requestoptions
+// [README]: https://pkg.go.dev/github.com/lmnt-com/lmnt-go/v2#readme-requestoptions
 type RequestOption = requestconfig.RequestOption
 
 // WithBaseURL returns a RequestOption that sets the BaseURL for the client.
