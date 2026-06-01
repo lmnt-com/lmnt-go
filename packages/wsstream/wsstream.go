@@ -12,6 +12,7 @@ package wsstream
 import (
 	"bytes"
 	"context"
+	"io"
 	"net/http"
 	"sync"
 
@@ -95,6 +96,11 @@ func (c *wsConn) Read(ctx context.Context) (Frame, error) {
 	// allocating a fresh []byte per frame.
 	typ, r, err := c.ws.Reader(ctx)
 	if err != nil {
+		// A graceful server close (status 1000) ends the stream cleanly; surface
+		// it as io.EOF so Recv/Messages/StreamAudio terminate without an error.
+		if websocket.CloseStatus(err) == websocket.StatusNormalClosure {
+			return Frame{}, io.EOF
+		}
 		return Frame{}, err
 	}
 	c.readBuf.Reset()
