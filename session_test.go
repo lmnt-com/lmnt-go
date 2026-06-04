@@ -85,8 +85,8 @@ func TestSpeechSessionHappyPath(t *testing.T) {
 	if err := json.Unmarshal(initFrame, &initMsg); err != nil {
 		t.Fatalf("init frame is not JSON: %s", err)
 	}
-	if initMsg["lmnt-version"] != "1.1" {
-		t.Fatalf("init lmnt-version: got %v, want 1.1", initMsg["lmnt-version"])
+	if initMsg["lmnt-version"] != "1.2" {
+		t.Fatalf("init lmnt-version: got %v, want 1.2", initMsg["lmnt-version"])
 	}
 
 	if err := sess.SendText(context.Background(), "hello"); err != nil {

@@ -431,11 +431,8 @@ func (*SpeechSessionAudio) isSpeechSessionMessage() {}
 
 // Timestamps for the audio chunk that was just streamed, if requested in `init`.
 type SpeechSessionTimestamps struct {
-	// Array of timestamp objects, one per generated text token.
-	//
-	// <Warning>
-	// The timestamps array resets its start time for each chunk of audio.
-	// </Warning>
+	// Array of timestamp objects, one per generated text token. Start times are
+	// cumulative, and reset to 0.0 after a `flush` or `reset`.
 	Timestamps []Timestamp `json:"timestamps"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
