@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.13.0](https://github.com/lmnt-com/lmnt-go/compare/v2.12.2...v2.13.0) (2026-06-04)
+
+
+### Features
+
+* **api:** target API version 1.2 ([1c0f35f](https://github.com/lmnt-com/lmnt-go/commit/1c0f35f2873e383d34054d64d78fb171ba21bb7e))
+
 ## [2.12.2](https://github.com/lmnt-com/lmnt-go/compare/v2.12.1...v2.12.2) (2026-06-01)
 
 
